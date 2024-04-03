@@ -14,12 +14,11 @@ import static java.util.stream.Collectors.*;
 import static model.Amount.LOTTO_UNIT_PRICE;
 
 public class Calculator {
-    private Map<Ranking, Integer> rankingCountMap = new EnumMap<>(Ranking.class);
+    private final Map<Ranking, Integer> rankingCountMap = initMap();
     private List<LottoResult> lottoResultList = new ArrayList<>();
 
     public Calculator(List<LottoResult> lottoResultList) {
         this.lottoResultList = lottoResultList;
-        initMap();
     }
 
     public void saveRanking(Lottery lottery) {
@@ -59,11 +58,12 @@ public class Calculator {
         return rankingCountMap;
     }
 
-    private void initMap() {
-        rankingCountMap = new EnumMap<>(Ranking.class);
+    private Map<Ranking, Integer> initMap() {
+        Map<Ranking, Integer> rankingCountMap = new EnumMap<>(Ranking.class);
         asList(Ranking.values()).forEach(
             ranking -> rankingCountMap.put(ranking, 0)
         );
+        return rankingCountMap;
     }
 
     public double calculateProfitRate() {
