@@ -71,7 +71,7 @@ public class LottoController {
 
     private static Amount getAmount() {
         int amountInput = InputView.amountInput();
-        Amount amount = Amount.costInput(amountInput);
+        Amount amount = new Amount(amountInput);
         return amount;
     }
 }

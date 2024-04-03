@@ -10,7 +10,7 @@ public class AmountTest {
     @Test
     void 금액은_천원_단위로_입력받는다() {
         int cost = 14000;
-        Amount amount = Amount.costInput(cost);
+        Amount amount = new Amount(cost);
         Assertions.assertThat(amount.getCost()).isEqualTo(cost);
     }
 
@@ -20,7 +20,7 @@ public class AmountTest {
 
         assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> {
-                Amount.costInput(cost);
+                Amount amount = new Amount(cost);
             }).withMessage("1000원 단위로 입력해주세요.");
     }
 
@@ -30,7 +30,7 @@ public class AmountTest {
 
         assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> {
-                Amount.costInput(cost);
+                Amount amount = new Amount(cost);
             }).withMessage("금액은 1000원 이상이여야 합니다.");
     }
 }

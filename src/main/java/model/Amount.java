@@ -5,12 +5,8 @@ public class Amount {
     private final int cost;
 
     public Amount(int cost) {
-        this.cost = cost;
-    }
-
-    public static Amount costInput(int cost) {
         validate(cost);
-        return new Amount(cost);
+        this.cost = cost;
     }
 
     private static void validate(int cost) {
