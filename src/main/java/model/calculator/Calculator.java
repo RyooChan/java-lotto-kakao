@@ -33,19 +33,6 @@ public class Calculator {
         calculateRankingCount();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Calculator that = (Calculator) o;
-        return Objects.equals(lottoResultList, that.lottoResultList);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(lottoResultList);
-    }
-
     public void calculateRankingCount() {
         lottoResultList.forEach(
             lottoResult -> {
@@ -53,10 +40,6 @@ public class Calculator {
                 rankingCountMap.put(ranking, rankingCountMap.get(ranking) + 1);
             }
         );
-    }
-
-    public Map<Ranking, Integer> getRankingCountMap() {
-        return rankingCountMap;
     }
 
     private Map<Ranking, Integer> initMap() {
@@ -87,5 +70,22 @@ public class Calculator {
 
     private double divideAndRound(double num) {
         return Math.floor(num * 100) / 100;
+    }
+
+    public Map<Ranking, Integer> getRankingCountMap() {
+        return rankingCountMap;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Calculator that = (Calculator) o;
+        return Objects.equals(lottoResultList, that.lottoResultList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lottoResultList);
     }
 }

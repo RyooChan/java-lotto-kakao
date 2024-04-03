@@ -45,10 +45,6 @@ public class WinningNumbers {
         return new WinningNumbers(winningNumberSet);
     }
 
-    public Set<Ball> getWinningNumbers() {
-        return winningNumbers;
-    }
-
     private static void validate(Set<Ball> winningNumberSet) {
         validateUniqueNumberCount(winningNumberSet);
     }
@@ -57,6 +53,9 @@ public class WinningNumbers {
         if (winningNumberSet.size() != NUMBER_COUNT) {
             throw new IllegalArgumentException(String.format("서로 다른 %d개 숫자를 입력해주세요", NUMBER_COUNT));
         }
+    }
+    public Set<Ball> getWinningNumbers() {
+        return winningNumbers;
     }
 
     @Override

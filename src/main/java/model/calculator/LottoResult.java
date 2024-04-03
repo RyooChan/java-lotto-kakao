@@ -16,10 +16,6 @@ public class LottoResult {
     private final LottoNumbers lottoNumbers;
     private Ranking ranking = Ranking.NONE;
 
-    public Ranking getRanking() {
-        return ranking;
-    }
-
     public LottoResult(LottoNumbers lottoNumbers) {
         this.lottoNumbers = lottoNumbers;
     }
@@ -31,6 +27,10 @@ public class LottoResult {
 
     public void saveRanking(Lottery lottery) {
         this.ranking = lottery.rank(lottoNumbers);
+    }
+
+    public Ranking getRanking() {
+        return ranking;
     }
 
     @Override

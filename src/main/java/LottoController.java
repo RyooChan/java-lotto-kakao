@@ -26,20 +26,37 @@ public class LottoController {
         WinningBonusNumber winningBonusNumber = inputBonusNumber(winningNumbers);
 
         Lottery lottery = new Lottery(winningNumbers, winningBonusNumber);
-        Calculator calculator = caculateLottery(lottery, lottoGenerator);
+        Calculator calculator = calculateLottery(lottery, lottoGenerator);
 
         printRankingProfit(calculator);
     }
 
-    private static void printRankingProfit(Calculator calculator) {
-        Map<Ranking, Integer> rankingCountMap = calculator.getRankingCountMap();
-        OutputView.printRankingResult(rankingCountMap);
-
-        double profitRate = calculator.calculateProfitRate();
-        OutputView.printProfitRateResult(profitRate);
+    private static Amount getAmount() {
+        int amountInput = InputView.amountInput();
+        Amount amount = new Amount(amountInput);
+        return amount;
     }
 
-    private static Calculator caculateLottery(Lottery lottery, LottoGenerator lottoGenerator) {
+    private static LottoGenerator generateLottoNumbers(Amount amount) {
+        LottoGenerator lottoGenerator = LottoGenerator.generate(amount);
+        OutputView.printPurchaseCount(lottoGenerator.calculateCount());
+        OutputView.printLottoNumberList(lottoGenerator.getLottoNumberList());
+        return lottoGenerator;
+    }
+
+    private static WinningNumbers inputWinningNumbers() {
+        WinningNumbers winningNumbers = WinningNumbers
+            .createWinningNumbers(InputView.winningNumbersInput());
+        return winningNumbers;
+    }
+
+    private static WinningBonusNumber inputBonusNumber(WinningNumbers winningNumbers) {
+        WinningBonusNumber winningBonusNumber = WinningBonusNumber
+            .createWinningBonusNumber(winningNumbers, new Ball(InputView.winningBonusNumberInput()));
+        return winningBonusNumber;
+    }
+
+    private static Calculator calculateLottery(Lottery lottery, LottoGenerator lottoGenerator) {
         List<LottoResult> lottoResultList = lottoGenerator.getLottoNumberList().stream()
             .map(
                 LottoResult::new
@@ -50,29 +67,12 @@ public class LottoController {
         return calculator;
     }
 
-    private static WinningBonusNumber inputBonusNumber(WinningNumbers winningNumbers) {
-        WinningBonusNumber winningBonusNumber = WinningBonusNumber
-            .createWinningBonusNumber(winningNumbers, new Ball(InputView.winningBonusNumberInput()));
-        return winningBonusNumber;
-    }
+    private static void printRankingProfit(Calculator calculator) {
+        Map<Ranking, Integer> rankingCountMap = calculator.getRankingCountMap();
+        OutputView.printRankingResult(rankingCountMap);
 
-    private static WinningNumbers inputWinningNumbers() {
-        WinningNumbers winningNumbers = WinningNumbers
-            .createWinningNumbers(InputView.winningNumbersInput());
-        return winningNumbers;
-    }
-
-    private static LottoGenerator generateLottoNumbers(Amount amount) {
-        LottoGenerator lottoGenerator = LottoGenerator.generate(amount);
-        OutputView.printPurchaseCount(lottoGenerator.calculateCount());
-        OutputView.printLottoNumberList(lottoGenerator.getLottoNumberList());
-        return lottoGenerator;
-    }
-
-    private static Amount getAmount() {
-        int amountInput = InputView.amountInput();
-        Amount amount = new Amount(amountInput);
-        return amount;
+        double profitRate = calculator.calculateProfitRate();
+        OutputView.printProfitRateResult(profitRate);
     }
 }
 

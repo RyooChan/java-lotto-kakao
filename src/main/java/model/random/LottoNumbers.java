@@ -8,16 +8,15 @@ import model.Ball;
 public class LottoNumbers {
     private final Set<Ball> LottoNumbers;
 
-
     public LottoNumbers(Set<Ball> lottoNumbers) {
         LottoNumbers = lottoNumbers;
     }
 
-    public Set<Ball> getLottoNumbers() {
-        return LottoNumbers;
-    }
-
     public static Set<Ball> generateRandNums(RandomNumberGenerator randomNumberGenerator) {
         return randomNumberGenerator.generateRandNums();
+    }
+
+    public Set<Ball> getLottoNumbers() {
+        return LottoNumbers;
     }
 }

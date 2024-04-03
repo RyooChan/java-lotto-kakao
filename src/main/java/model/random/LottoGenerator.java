@@ -14,14 +14,6 @@ public class LottoGenerator {
         this.lottoNumberList = new ArrayList<>(lottoNumberList);
     }
 
-    public List<LottoNumbers> getLottoNumberList() {
-        return lottoNumberList;
-    }
-
-    public int getWholeLottoSize() {
-        return lottoNumberList.size();
-    }
-
     public static LottoGenerator generate(Amount amount) {
         int count = amount.getCost() / LOTTO_UNIT_PRICE;
 
@@ -37,6 +29,14 @@ public class LottoGenerator {
     }
 
     public int calculateCount() {
+        return lottoNumberList.size();
+    }
+
+    public List<LottoNumbers> getLottoNumberList() {
+        return lottoNumberList;
+    }
+
+    public int getWholeLottoSize() {
         return lottoNumberList.size();
     }
 }
