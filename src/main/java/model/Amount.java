@@ -15,7 +15,7 @@ public class Amount {
     }
 
     private static void validateProperCostUnit(int cost) {
-        if (cost % 1000 != 0) {
+        if (cost % LOTTO_UNIT_PRICE != 0) {
             throw new IllegalArgumentException("1000원 단위로 입력해주세요.");
         }
     }
