@@ -2,23 +2,18 @@ package model.winningLottery;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import model.Ball;
 import model.random.LottoNumbers;
-
-import static java.util.Arrays.*;
-import static java.util.Arrays.asList;
-import static java.util.stream.Collectors.*;
-import static model.random.NumberRange.*;
 
 public class WinningNumbers {
     private static final int NUMBER_COUNT = 6;
-    private Set<Integer> winningNumbers = new HashSet<>();
+    private Set<Ball> winningNumbers = new HashSet<>();
 
-    public WinningNumbers(Set<Integer> winningNumbers) {
+    public WinningNumbers(Set<Ball> winningNumbers) {
         this.winningNumbers = winningNumbers;
     }
 
@@ -30,7 +25,7 @@ public class WinningNumbers {
             ).sum();
     }
 
-    private int numberMatch(int lottoNumber) {
+    private int numberMatch(Ball lottoNumber) {
         if (winningNumbers.contains(lottoNumber)){
             return 1;
         }
@@ -39,37 +34,28 @@ public class WinningNumbers {
     }
 
     public static WinningNumbers createWinningNumbers(String winningNumberStr) {
-        int[] numbers = stream(winningNumberStr.split(","))
-            .mapToInt(Integer::parseInt)
-            .toArray();
 
-        Set<Integer> winningNumberSet = stream(numbers)
-            .boxed()
-            .collect(toSet());
+        Set<Ball> winningNumberSet = Arrays.stream(winningNumberStr.split(","))
+            .map(Integer::parseInt)
+            .map(Ball::new)
+            .collect(Collectors.toSet());
 
         validate(winningNumberSet);
 
         return new WinningNumbers(winningNumberSet);
     }
 
-    public Set<Integer> getWinningNumbers() {
+    public Set<Ball> getWinningNumbers() {
         return winningNumbers;
     }
 
-    private static void validate(Set<Integer> winningNumberSet) {
+    private static void validate(Set<Ball> winningNumberSet) {
         validateUniqueNumberCount(winningNumberSet);
-        winningNumberSet.forEach(WinningNumbers::validateNumberRange);
     }
 
-    private static void validateUniqueNumberCount(Set<Integer> winningNumberSet) {
+    private static void validateUniqueNumberCount(Set<Ball> winningNumberSet) {
         if (winningNumberSet.size() != NUMBER_COUNT) {
             throw new IllegalArgumentException(String.format("서로 다른 %d개 숫자를 입력해주세요", NUMBER_COUNT));
-        }
-    }
-
-    private static void validateNumberRange(int winningNumber) {
-        if (winningNumber < START.getValue() || winningNumber > END.getValue()) {
-            throw new IllegalArgumentException(String.format("%d ~ %d 사이 값을 입력하세요", START.getValue(), END.getValue()));
         }
     }
 

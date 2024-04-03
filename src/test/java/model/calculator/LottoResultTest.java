@@ -1,16 +1,15 @@
 package model.calculator;
 
-import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import model.Ball;
 import model.random.LottoNumbers;
 import model.winningLottery.Lottery;
 import model.winningLottery.WinningBonusNumber;
 import model.winningLottery.WinningNumbers;
 
-import static java.util.Set.*;
 import static model.winningLottery.Ranking.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -18,11 +17,11 @@ class LottoResultTest {
 
     @Test
     void 로또_결과_랭킹이_저장된다() {
-        LottoNumbers lottoNumbers = new LottoNumbers(List.of(1,2,3,4,5,6));
+        LottoNumbers lottoNumbers = new LottoNumbers(Ball.createBallSet(Set.of(1,2,3,4,5,6)));
         LottoResult lottoResult = new LottoResult(lottoNumbers);
 
-        WinningNumbers winningNumbers = new WinningNumbers(of(1,2,3,4,5,6));
-        WinningBonusNumber bonusNumber = new WinningBonusNumber(7);
+        WinningNumbers winningNumbers = new WinningNumbers(Ball.createBallSet(Set.of(1,2,3,4,5,6)));
+        WinningBonusNumber bonusNumber = new WinningBonusNumber(new Ball(7));
         Lottery lottery = new Lottery(winningNumbers, bonusNumber);
 
         LottoResult expectedResult = new LottoResult(lottoNumbers, FIRST);

@@ -1,23 +1,23 @@
 package model.random;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import model.winningLottery.Ranking;
+import model.Ball;
 
 public class LottoNumbers {
-    private List<Integer> LottoNumbers = new ArrayList<>();
+    private Set<Ball> LottoNumbers = new HashSet<>();
 
 
-    public LottoNumbers(List<Integer> lottoNumbers) {
+    public LottoNumbers(Set<Ball> lottoNumbers) {
         LottoNumbers = lottoNumbers;
     }
 
-    public List<Integer> getLottoNumbers() {
+    public Set<Ball> getLottoNumbers() {
         return LottoNumbers;
     }
 
-    public static List<Integer> generateRandNums(RandomNumberGenerator randomNumberGenerator) {
+    public static Set<Ball> generateRandNums(RandomNumberGenerator randomNumberGenerator) {
         return randomNumberGenerator.generateRandNums();
     }
 }

@@ -1,9 +1,8 @@
-import java.awt.CardLayout;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import model.Amount;
+import model.Ball;
 import model.calculator.Calculator;
 import model.calculator.LottoResult;
 import model.random.LottoGenerator;
@@ -31,7 +30,7 @@ public class LottoGame {
             .createWinningNumbers(InputView.winningNumbersInput());
 
         WinningBonusNumber winningBonusNumber = WinningBonusNumber
-            .createWinningBonusNumber(winningNumbers, InputView.winningBonusNumberInput());
+            .createWinningBonusNumber(winningNumbers, new Ball(InputView.winningBonusNumberInput()));
 
         Lottery lottery = new Lottery(winningNumbers, winningBonusNumber);
 
