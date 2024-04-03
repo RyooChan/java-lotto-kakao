@@ -23,4 +23,14 @@ public class AmountTest {
                 Amount.costInput(cost);
             }).withMessage("1000원 단위로 입력해주세요.");
     }
+
+    @Test
+    void 금액은_천원_이상만_가능() {
+        int cost = 0;
+
+        assertThatExceptionOfType(IllegalArgumentException.class)
+            .isThrownBy(() -> {
+                Amount.costInput(cost);
+            }).withMessage("금액은 1000원 이상이여야 합니다.");
+    }
 }
