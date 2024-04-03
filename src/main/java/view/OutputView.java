@@ -2,13 +2,12 @@ package view;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
-import model.Amount;
-import model.random.LottoGenerator;
 import model.random.LottoNumbers;
 import model.winningLottery.Ranking;
 
-import static java.lang.String.format;
+import static java.lang.String.valueOf;
 
 public class OutputView {
     public static void printPurchaseCount(int count) {
@@ -16,15 +15,16 @@ public class OutputView {
     }
 
     public static void printLottoNumberList(List<LottoNumbers> lottoNumberList) {
-        lottoNumberList.forEach(
-            lottoNumbers -> System.out.println(lottoNumbers.getLottoNumbers())
-        );
+        lottoNumberList.forEach(lottoNumbers ->
+        System.out.println("[" + lottoNumbers.getLottoNumbers().stream()
+            .map(lottoNumber -> valueOf(lottoNumber.getBall()))
+            .collect(Collectors.joining(",")) + "]"));
     }
 
     public static void printRankingResult(Map<Ranking, Integer> rankingCountMap) {
         System.out.println("\n당첨 통계\n---------");
         rankingCountMap.forEach(
-            (key, value) -> System.out.printf("%s (%d원)- %d개\n", key.getCondition(),
+            (key, value) -> System.out.printf("%d개 일치   (%d원)- %d개\n", key.getCondition(),
             key.getReward(), value));
 
     }
