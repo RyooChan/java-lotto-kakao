@@ -15,7 +15,8 @@ import static model.Amount.LOTTO_UNIT_PRICE;
 
 public class Calculator {
     private final Map<Ranking, Integer> rankingCountMap = initMap();
-    private List<LottoResult> lottoResultList = new ArrayList<>();
+
+    private List<LottoResult> lottoResultList;
 
     public Calculator(List<LottoResult> lottoResultList) {
         this.lottoResultList = lottoResultList;

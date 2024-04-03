@@ -11,7 +11,7 @@ import model.random.LottoNumbers;
 
 public class WinningNumbers {
     private static final int NUMBER_COUNT = 6;
-    private Set<Ball> winningNumbers = new HashSet<>();
+    private final Set<Ball> winningNumbers;
 
     public WinningNumbers(Set<Ball> winningNumbers) {
         this.winningNumbers = winningNumbers;

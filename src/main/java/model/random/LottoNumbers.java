@@ -6,7 +6,7 @@ import java.util.Set;
 import model.Ball;
 
 public class LottoNumbers {
-    private Set<Ball> LottoNumbers = new HashSet<>();
+    private final Set<Ball> LottoNumbers;
 
 
     public LottoNumbers(Set<Ball> lottoNumbers) {

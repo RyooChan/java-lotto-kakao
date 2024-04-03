@@ -8,9 +8,9 @@ import model.Amount;
 import static model.Amount.LOTTO_UNIT_PRICE;
 
 public class LottoGenerator {
-    private List<LottoNumbers> lottoNumberList = new ArrayList<>();
+    private final List<LottoNumbers> lottoNumberList;
 
-    public LottoGenerator(List<LottoNumbers> lottoNumberList) {
+    private LottoGenerator(List<LottoNumbers> lottoNumberList) {
         this.lottoNumberList = lottoNumberList;
     }
 
