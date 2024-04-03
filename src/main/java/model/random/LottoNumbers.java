@@ -1,6 +1,5 @@
 package model.random;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import model.Ball;

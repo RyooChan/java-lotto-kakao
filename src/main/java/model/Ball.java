@@ -1,13 +1,17 @@
 package model;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.*;
-import static model.random.NumberRange.END;
-import static model.random.NumberRange.START;
 
 public class Ball {
+    private static final int START_NUMBER = 1;
+    private static final int END_NUMBER = 45;
+    public static List<Ball> lottoNums = IntStream.rangeClosed(START_NUMBER, END_NUMBER).mapToObj(Ball::new).collect(toList());
+
     private final int ball;
 
     public Ball(int ball) {
@@ -21,17 +25,17 @@ public class Ball {
             .collect(toSet());
     }
 
-    public int getBall() {
-        return ball;
-    }
-
 
     private void validateNumberRange(int ballNumber) {
-        if (ballNumber < START.getValue() ||
-            ballNumber > END.getValue()) {
+        if (ballNumber < START_NUMBER ||
+            ballNumber > END_NUMBER) {
             throw new IllegalArgumentException(String.format("%d ~ %d 사이 값을 입력하세요",
-                START.getValue(), END.getValue()));
+                START_NUMBER, END_NUMBER));
         }
+    }
+
+    public int getBall() {
+        return ball;
     }
 
     @Override
