@@ -24,7 +24,7 @@ public class OutputView {
     public static void printRankingResult(Map<Ranking, Integer> rankingCountMap) {
         System.out.println("\n당첨 통계\n---------");
         rankingCountMap.forEach(
-            (key, value) -> System.out.printf("%d개 일치   (%d원)- %d개\n", key.getCondition(),
+            (key, value) -> System.out.printf("%s (%d원)- %d개\n", key.getCondition(),
             key.getReward(), value));
 
     }
