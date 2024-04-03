@@ -29,13 +29,8 @@ public class LottoResult {
         this.ranking = ranking;
     }
 
-    private void calculateRanking(Ranking ranking) {
-        this.ranking = ranking;
-    }
-
     public void saveRanking(Lottery lottery) {
-        Ranking ranking = lottery.rank(lottoNumbers);
-        calculateRanking(ranking);
+        this.ranking = lottery.rank(lottoNumbers);
     }
 
     @Override
