@@ -52,7 +52,7 @@ public class LottoController {
 
     private static WinningBonusNumber inputBonusNumber(WinningNumbers winningNumbers) {
         WinningBonusNumber winningBonusNumber = WinningBonusNumber
-            .createWinningBonusNumber(winningNumbers, new Ball(InputView.winningBonusNumberInput()));
+            .createWinningBonusNumber(winningNumbers, Ball.createBallOrThrowException(InputView.winningBonusNumberInput()));
         return winningBonusNumber;
     }
 

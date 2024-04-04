@@ -14,24 +14,22 @@ public class Ball {
 
     private final int ball;
 
-    public Ball(int ball) {
-        validateNumberRange(ball);
-        this.ball = ball;
+    private Ball(int ballNumber) {
+        this.ball = ballNumber;
+    }
+
+    public static Ball createBallOrThrowException(int ballNumber) {
+        return lottoNums.stream()
+            .filter(ball -> ball.ball == ballNumber)
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException(String.format("%d ~ %d 사이 값을 입력하세요",
+                START_NUMBER, END_NUMBER)));
     }
 
     public static Set<Ball> createBallSet(Set<Integer> balls) {
         return balls.stream()
-            .map(Ball::new)
+            .map(Ball::createBallOrThrowException)
             .collect(toSet());
-    }
-
-
-    private void validateNumberRange(int ballNumber) {
-        if (ballNumber < START_NUMBER ||
-            ballNumber > END_NUMBER) {
-            throw new IllegalArgumentException(String.format("%d ~ %d 사이 값을 입력하세요",
-                START_NUMBER, END_NUMBER));
-        }
     }
 
     public int getBall() {

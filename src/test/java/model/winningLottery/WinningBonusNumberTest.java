@@ -14,9 +14,9 @@ class WinningBonusNumberTest {
     @Test
     void 보너스넘버_생성() {
         WinningNumbers winningNumbers = new WinningNumbers(Ball.createBallSet(Set.of(1,2,3,4,5,6)));
-        WinningBonusNumber winningBonusNumber = WinningBonusNumber.createWinningBonusNumber(winningNumbers, new Ball(7));
+        WinningBonusNumber winningBonusNumber = WinningBonusNumber.createWinningBonusNumber(winningNumbers, Ball.createBallOrThrowException(7));
 
-        WinningBonusNumber expectedWinningBonusNumber = new WinningBonusNumber(new Ball(7));
+        WinningBonusNumber expectedWinningBonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(7));
 
         assertThat(winningBonusNumber).isEqualTo(expectedWinningBonusNumber);
     }
@@ -27,7 +27,7 @@ class WinningBonusNumberTest {
 
         assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> {
-                WinningBonusNumber winningBonusNumber = WinningBonusNumber.createWinningBonusNumber(winningNumbers, new Ball(6));
+                WinningBonusNumber winningBonusNumber = WinningBonusNumber.createWinningBonusNumber(winningNumbers, Ball.createBallOrThrowException(6));
             }).withMessage("지난주 당첨 번호와 보너스 번호는 달라야 합니다.");
     }
 
@@ -37,7 +37,7 @@ class WinningBonusNumberTest {
 
         assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> {
-                WinningBonusNumber.createWinningBonusNumber(winningNumbers, new Ball(46));
+                WinningBonusNumber.createWinningBonusNumber(winningNumbers, Ball.createBallOrThrowException(46));
             }).withMessage("1 ~ 45 사이 값을 입력하세요");
     }
 }

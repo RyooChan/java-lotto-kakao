@@ -1,7 +1,6 @@
 package model.winningLottery;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -37,7 +36,7 @@ public class WinningNumbers {
 
         Set<Ball> winningNumberSet = Arrays.stream(winningNumberStr.split(","))
             .map(Integer::parseInt)
-            .map(Ball::new)
+            .map(Ball::createBallOrThrowException)
             .collect(Collectors.toSet());
 
         validate(winningNumberSet);
