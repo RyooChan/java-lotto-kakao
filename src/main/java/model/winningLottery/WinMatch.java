@@ -1,15 +1,14 @@
 package model.winningLottery;
 
-import model.random.LottoGenerator;
 import model.random.LottoNumbers;
 
 import static model.winningLottery.Ranking.*;
 
-public class Lottery {
+public class WinMatch {
     private final WinningNumbers winningNumbers;
     private final WinningBonusNumber winningBonusNumber;
 
-    public Lottery(WinningNumbers winningNumbers, WinningBonusNumber winningBonusNumber) {
+    public WinMatch(WinningNumbers winningNumbers, WinningBonusNumber winningBonusNumber) {
         this.winningNumbers = winningNumbers;
         this.winningBonusNumber = winningBonusNumber;
     }

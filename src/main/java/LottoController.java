@@ -6,7 +6,7 @@ import model.Ball;
 import model.calculator.Calculator;
 import model.calculator.LottoResult;
 import model.random.LottoGenerator;
-import model.winningLottery.Lottery;
+import model.winningLottery.WinMatch;
 import model.winningLottery.Ranking;
 import model.winningLottery.WinningBonusNumber;
 import model.winningLottery.WinningNumbers;
@@ -25,8 +25,8 @@ public class LottoController {
 
         WinningBonusNumber winningBonusNumber = inputBonusNumber(winningNumbers);
 
-        Lottery lottery = new Lottery(winningNumbers, winningBonusNumber);
-        Calculator calculator = calculateLottery(lottery, lottoGenerator);
+        WinMatch winMatch = new WinMatch(winningNumbers, winningBonusNumber);
+        Calculator calculator = calculateLottery(winMatch, lottoGenerator);
 
         printRankingProfit(calculator);
     }
@@ -56,13 +56,13 @@ public class LottoController {
         return winningBonusNumber;
     }
 
-    private static Calculator calculateLottery(Lottery lottery, LottoGenerator lottoGenerator) {
+    private static Calculator calculateLottery(WinMatch winMatch, LottoGenerator lottoGenerator) {
         List<LottoResult> lottoResultList = lottoGenerator.getLottoNumberList().stream()
             .map(
-                lottoNumbers -> LottoResult.createLottoResult(lottoNumbers, lottery)
+                lottoNumbers -> LottoResult.createLottoResult(lottoNumbers, winMatch)
             )
             .collect(toList());
-        return Calculator.createCalculator(lottoResultList, lottery);
+        return Calculator.createCalculator(lottoResultList, winMatch);
     }
 
     private static void printRankingProfit(Calculator calculator) {

@@ -13,15 +13,15 @@ import static model.winningLottery.Ranking.SECOND;
 import static model.winningLottery.Ranking.THIRD;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LotteryTest {
+class WinMatchTest {
 
     @Test
     void 당첨번호와_보너스숫자를_입력받아_몇등인지_구한다_1등() {
         WinningNumbers winningNumbers = new WinningNumbers(Ball.createBallSet(Set.of(1, 2, 3, 4, 5, 6)));
         WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(7));
 
-        Lottery lottery = new Lottery(winningNumbers, winningBonusNumber);
-        Ranking rank = lottery.rank(new LottoNumbers(Ball.createBallSet(Set.of(1, 2, 3, 4, 5, 6))));
+        WinMatch winMatch = new WinMatch(winningNumbers, winningBonusNumber);
+        Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBallSet(Set.of(1, 2, 3, 4, 5, 6))));
 
         assertThat(rank).isEqualTo(FIRST);
     }
@@ -31,8 +31,8 @@ class LotteryTest {
         WinningNumbers winningNumbers = new WinningNumbers(Ball.createBallSet(Set.of(1, 2, 3, 4, 5, 6)));
         WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(7));
 
-        Lottery lottery = new Lottery(winningNumbers, winningBonusNumber);
-        Ranking rank = lottery.rank(new LottoNumbers(Ball.createBallSet(Set.of(1, 2, 7, 4, 5, 6))));
+        WinMatch winMatch = new WinMatch(winningNumbers, winningBonusNumber);
+        Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBallSet(Set.of(1, 2, 7, 4, 5, 6))));
 
         assertThat(rank).isEqualTo(SECOND);
     }
@@ -42,8 +42,8 @@ class LotteryTest {
         WinningNumbers winningNumbers = new WinningNumbers(Ball.createBallSet(Set.of(1, 2, 3, 4, 5, 6)));
         WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(7));
 
-        Lottery lottery = new Lottery(winningNumbers, winningBonusNumber);
-        Ranking rank = lottery.rank(new LottoNumbers(Ball.createBallSet(Set.of(1, 2, 3, 4, 5, 8))));
+        WinMatch winMatch = new WinMatch(winningNumbers, winningBonusNumber);
+        Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBallSet(Set.of(1, 2, 3, 4, 5, 8))));
 
         assertThat(rank).isEqualTo(THIRD);
     }
@@ -53,8 +53,8 @@ class LotteryTest {
         WinningNumbers winningNumbers = new WinningNumbers(Ball.createBallSet(Set.of(1, 2, 3, 4, 5, 6)));
         WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(7));
 
-        Lottery lottery = new Lottery(winningNumbers, winningBonusNumber);
-        Ranking rank = lottery.rank(new LottoNumbers(Ball.createBallSet(Set.of(1, 2, 3, 9, 5, 8))));
+        WinMatch winMatch = new WinMatch(winningNumbers, winningBonusNumber);
+        Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBallSet(Set.of(1, 2, 3, 9, 5, 8))));
 
         assertThat(rank).isEqualTo(FOURTH);
     }

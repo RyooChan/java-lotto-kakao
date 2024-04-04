@@ -1,16 +1,10 @@
 package model.calculator;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import model.random.LottoNumbers;
-import model.winningLottery.Lottery;
+import model.winningLottery.WinMatch;
 import model.winningLottery.Ranking;
-import model.winningLottery.WinningBonusNumber;
-import model.winningLottery.WinningNumbers;
 
 public class LottoResult {
     private final LottoNumbers lottoNumbers;
@@ -21,8 +15,8 @@ public class LottoResult {
         this.ranking = ranking;
     }
 
-    public static LottoResult createLottoResult(LottoNumbers lottoNumbers, Lottery lottery) {
-        Ranking rank = lottery.rank(lottoNumbers);
+    public static LottoResult createLottoResult(LottoNumbers lottoNumbers, WinMatch winMatch) {
+        Ranking rank = winMatch.rank(lottoNumbers);
         return new LottoResult(lottoNumbers, rank);
     }
 

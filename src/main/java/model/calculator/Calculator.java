@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import model.winningLottery.Lottery;
+import model.winningLottery.WinMatch;
 import model.winningLottery.Ranking;
 
 import static java.util.Arrays.asList;
@@ -22,10 +22,10 @@ public class Calculator {
         calculateRankingCount();
     }
 
-    public static Calculator createCalculator(List<LottoResult> lottoResultList, Lottery lottery) {
+    public static Calculator createCalculator(List<LottoResult> lottoResultList, WinMatch winMatch) {
         lottoResultList = lottoResultList
             .stream().map(
-                lottoResult -> LottoResult.createLottoResult(lottoResult.getLottoNumbers(), lottery)
+                lottoResult -> LottoResult.createLottoResult(lottoResult.getLottoNumbers(), winMatch)
             ).collect(toList());
 
         return new Calculator(lottoResultList);

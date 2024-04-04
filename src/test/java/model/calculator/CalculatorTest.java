@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import model.Ball;
 import model.random.LottoNumbers;
-import model.winningLottery.Lottery;
+import model.winningLottery.WinMatch;
 import model.winningLottery.Ranking;
 import model.winningLottery.WinningBonusNumber;
 import model.winningLottery.WinningNumbers;
@@ -30,13 +30,13 @@ class CalculatorTest {
     void 로또번호들을_저장한다() {
         WinningNumbers winningNumbers = new WinningNumbers(createBallSet(Set.of(1,2,3,4,5,6)));
         WinningBonusNumber bonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(7));
-        Lottery lottery = new Lottery(winningNumbers, bonusNumber);
+        WinMatch winMatch = new WinMatch(winningNumbers, bonusNumber);
 
         LottoNumbers lottoNumbers = new LottoNumbers(createBallSet(Set.of(1,2,3,4,5,6)));
-        LottoResult lottoResult = LottoResult.createLottoResult(lottoNumbers, lottery);
+        LottoResult lottoResult = LottoResult.createLottoResult(lottoNumbers, winMatch);
 
         int expectedFirstCount = 1;
-        Calculator calculator = Calculator.createCalculator(List.of(lottoResult), lottery);
+        Calculator calculator = Calculator.createCalculator(List.of(lottoResult), winMatch);
 
         assertThat(calculator.getRankingCountMap().get(FIRST)).isEqualTo(expectedFirstCount);
     }
@@ -45,13 +45,13 @@ class CalculatorTest {
     void 각_등수를_가진_로또번호들의_갯수를구한다() {
         WinningNumbers winningNumbers = new WinningNumbers(createBallSet(Set.of(1,2,3,4,5,6)));
         WinningBonusNumber bonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(7));
-        Lottery lottery = new Lottery(winningNumbers, bonusNumber);
+        WinMatch winMatch = new WinMatch(winningNumbers, bonusNumber);
 
-        LottoResult firstOne = LottoResult.createLottoResult(new LottoNumbers(createBallSet(Set.of(1, 2, 3, 4, 5, 6))), lottery);
-        LottoResult firstTwo = LottoResult.createLottoResult(new LottoNumbers(createBallSet(Set.of(1, 2, 3, 4, 5, 6))), lottery);
-        LottoResult secondOne = LottoResult.createLottoResult(new LottoNumbers(createBallSet(Set.of(1, 2, 3, 4, 5, 7))), lottery);
+        LottoResult firstOne = LottoResult.createLottoResult(new LottoNumbers(createBallSet(Set.of(1, 2, 3, 4, 5, 6))), winMatch);
+        LottoResult firstTwo = LottoResult.createLottoResult(new LottoNumbers(createBallSet(Set.of(1, 2, 3, 4, 5, 6))), winMatch);
+        LottoResult secondOne = LottoResult.createLottoResult(new LottoNumbers(createBallSet(Set.of(1, 2, 3, 4, 5, 7))), winMatch);
 
-        Calculator calculator = Calculator.createCalculator(asList(firstOne, firstTwo, secondOne), lottery);
+        Calculator calculator = Calculator.createCalculator(asList(firstOne, firstTwo, secondOne), winMatch);
 
         Map<Ranking, Integer> expectedEnumMap = new EnumMap<>(Ranking.class);
         expectedEnumMap.put(FIRST, 2);
@@ -70,12 +70,12 @@ class CalculatorTest {
     void 각_등수를_통해_전체_수익률을_구한다() {
         WinningNumbers winningNumbers = new WinningNumbers(createBallSet(Set.of(1,2,3,4,5,6)));
         WinningBonusNumber bonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(7));
-        Lottery lottery = new Lottery(winningNumbers, bonusNumber);
+        WinMatch winMatch = new WinMatch(winningNumbers, bonusNumber);
 
-        LottoResult firstOne = LottoResult.createLottoResult(new LottoNumbers(createBallSet(Set.of(1, 2, 3, 4, 5, 6))), lottery);
-        LottoResult firstTwo = LottoResult.createLottoResult(new LottoNumbers(createBallSet(Set.of(1, 2, 3, 4, 5, 6))), lottery);
-        LottoResult secondOne = LottoResult.createLottoResult(new LottoNumbers(createBallSet(Set.of(1, 2, 3, 4, 5, 7))), lottery);
-        Calculator calculator = Calculator.createCalculator(asList(firstOne, firstTwo, secondOne), lottery);
+        LottoResult firstOne = LottoResult.createLottoResult(new LottoNumbers(createBallSet(Set.of(1, 2, 3, 4, 5, 6))), winMatch);
+        LottoResult firstTwo = LottoResult.createLottoResult(new LottoNumbers(createBallSet(Set.of(1, 2, 3, 4, 5, 6))), winMatch);
+        LottoResult secondOne = LottoResult.createLottoResult(new LottoNumbers(createBallSet(Set.of(1, 2, 3, 4, 5, 7))), winMatch);
+        Calculator calculator = Calculator.createCalculator(asList(firstOne, firstTwo, secondOne), winMatch);
 
         double profitRate = calculator.calculateProfitRate();
 

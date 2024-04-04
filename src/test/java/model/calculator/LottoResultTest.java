@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import model.Ball;
 import model.random.LottoNumbers;
-import model.winningLottery.Lottery;
+import model.winningLottery.WinMatch;
 import model.winningLottery.WinningBonusNumber;
 import model.winningLottery.WinningNumbers;
 
@@ -22,9 +22,9 @@ class LottoResultTest {
 
         WinningNumbers winningNumbers = new WinningNumbers(Ball.createBallSet(Set.of(1,2,3,4,5,6)));
         WinningBonusNumber bonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(7));
-        Lottery lottery = new Lottery(winningNumbers, bonusNumber);
+        WinMatch winMatch = new WinMatch(winningNumbers, bonusNumber);
 
-        LottoResult lottoResult = LottoResult.createLottoResult(lottoNumbers, lottery);
+        LottoResult lottoResult = LottoResult.createLottoResult(lottoNumbers, winMatch);
 
         assertThat(lottoResult.getRanking()).isEqualTo(FIRST);
     }
