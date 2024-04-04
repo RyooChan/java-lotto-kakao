@@ -1,27 +1,47 @@
 package model.winningLottery;
 
+import static java.util.Arrays.*;
+
 public enum Ranking {
-    FIRST("6개 일치", 2000000000),
-    SECOND("5개 일치, 보너스볼 일치", 30000000),
-    THIRD("5개 일치", 1500000),
-    FOURTH("4개 일치", 50000),
-    FIFTH("3개 일치", 5000),
-    NONE("그 외", 0),
+    FIRST(6, false, 2000000000),
+    SECOND(5, true, 30000000),
+    THIRD(5, false, 1500000),
+    FOURTH(4, false, 50000),
+    FIFTH(3, false, 5000),
+    NONE(0, false, 0),
     ;
 
-    Ranking(String condition, int reward) {
+    Ranking(int winningMatchCount, boolean isBonusMatch, long reward) {
+        this.winningMatchCount = winningMatchCount;
+        this.isBonusMatch = isBonusMatch;
         this.reward = reward;
-        this.condition = condition;
     }
 
-    private final String condition;
-    private final int reward;
+    private final int winningMatchCount;
+    private final boolean isBonusMatch;
+    private final long reward;
 
-    public String getCondition() {
-        return condition;
+    public static Ranking calculateRanking(int winningMatchCount, boolean isBonusMatch) {
+        return stream(values())
+            .filter(ranking -> isRanking(ranking, winningMatchCount, isBonusMatch))
+            .findFirst()
+            .orElse(NONE);
     }
 
-    public int getReward() {
+    private static boolean isRanking(Ranking ranking, int winningMatchCount, boolean isBonusMatch) {
+        return winningMatchCount >= ranking.winningMatchCount &&
+            ((isBonusMatch == ranking.isBonusMatch) || !ranking.isBonusMatch);
+    }
+
+    public int getWinningMatchCount() {
+        return winningMatchCount;
+    }
+
+    public boolean isBonusMatch() {
+        return isBonusMatch;
+    }
+
+    public long getReward() {
         return reward;
     }
 }

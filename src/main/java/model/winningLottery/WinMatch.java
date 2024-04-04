@@ -21,24 +21,10 @@ public class WinMatch {
 
     public Ranking rank(LottoNumbers lottoNumbers) {
         int winningCount = winningNumbers.matchCount(lottoNumbers);
-
-        if (winningCount == 6) {
-            return FIRST;
-        }
-
-        if (winningCount == 5) {
-            return winningBonusNumber.isMatch(lottoNumbers);
-        }
-
-        if (winningCount == 4) {
-            return FOURTH;
-        }
-
-        if (winningCount == 3) {
-            return FIFTH;
-        }
-
-        return NONE;
+        boolean isBonusMatch = lottoNumbers
+            .getLottoNumbers()
+            .contains(winningBonusNumber.getBonusNumber());
+        return Ranking.calculateRanking(winningCount, isBonusMatch);
     }
 
 

@@ -15,15 +15,6 @@ public class WinningBonusNumber {
         this.bonusNumber = bonusNumber;
     }
 
-    public Ranking isMatch(LottoNumbers lottoNumbers) {
-
-        if (lottoNumbers.getLottoNumbers().contains(bonusNumber)) {
-            return SECOND;
-        }
-
-        return THIRD;
-    }
-
     public Ball getBonusNumber() {
         return bonusNumber;
     }
