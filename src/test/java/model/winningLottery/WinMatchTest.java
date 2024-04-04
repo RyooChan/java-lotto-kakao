@@ -7,8 +7,10 @@ import org.junit.jupiter.api.Test;
 import model.Ball;
 import model.random.LottoNumbers;
 
+import static model.winningLottery.Ranking.FIFTH;
 import static model.winningLottery.Ranking.FIRST;
 import static model.winningLottery.Ranking.FOURTH;
+import static model.winningLottery.Ranking.NONE;
 import static model.winningLottery.Ranking.SECOND;
 import static model.winningLottery.Ranking.THIRD;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -58,6 +60,50 @@ class WinMatchTest {
         Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBallSet(Set.of(1, 2, 3, 9, 5, 8))));
 
         assertThat(rank).isEqualTo(FOURTH);
+    }
+
+    @Test
+    void 당첨번호와_보너스숫자를_입력받아_몇등인지_구한다_5등() {
+        WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers("1,2,3,4,5,6");
+        WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(7));
+
+        WinMatch winMatch = new WinMatch(winningNumbers, winningBonusNumber);
+        Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBallSet(Set.of(1, 2, 3, 9, 10, 8))));
+
+        assertThat(rank).isEqualTo(FIFTH);
+    }
+
+    @Test
+    void 당첨번호와_보너스숫자를_입력받아_몇등인지_구한다_그외1() {
+        WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers("1,2,3,4,5,6");
+        WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(7));
+
+        WinMatch winMatch = new WinMatch(winningNumbers, winningBonusNumber);
+        Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBallSet(Set.of(1, 2, 11, 9, 10, 8))));
+
+        assertThat(rank).isEqualTo(NONE);
+    }
+
+    @Test
+    void 당첨번호와_보너스숫자를_입력받아_몇등인지_구한다_그외2() {
+        WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers("1,2,3,4,5,6");
+        WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(7));
+
+        WinMatch winMatch = new WinMatch(winningNumbers, winningBonusNumber);
+        Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBallSet(Set.of(1, 12, 11, 9, 10, 8))));
+
+        assertThat(rank).isEqualTo(NONE);
+    }
+
+    @Test
+    void 당첨번호와_보너스숫자를_입력받아_몇등인지_구한다_그외3() {
+        WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers("1,2,3,4,5,6");
+        WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(7));
+
+        WinMatch winMatch = new WinMatch(winningNumbers, winningBonusNumber);
+        Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBallSet(Set.of(13, 2, 11, 9, 10, 8))));
+
+        assertThat(rank).isEqualTo(NONE);
     }
 
 
