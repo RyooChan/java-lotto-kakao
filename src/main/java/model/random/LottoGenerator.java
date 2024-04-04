@@ -21,7 +21,7 @@ public class LottoGenerator {
 
         for (int i=0; i<count; i++) {
             LottoNumbers lottoNumbers =
-                new LottoNumbers(LottoNumbers.generateRandNums(new RandomNumberGenerator() {}));
+                new LottoNumbers(LottoNumbers.generateRandomNumbers(new RandomNumberGenerator() {}));
             lottoNumberList.add(lottoNumbers);
         }
 

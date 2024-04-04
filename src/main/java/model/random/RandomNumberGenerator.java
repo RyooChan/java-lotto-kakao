@@ -10,7 +10,7 @@ import static model.Ball.*;
 
 public interface RandomNumberGenerator {
 
-    default Set<Ball> generateRandNums() {
+    default Set<Ball> generateRandomNumbers() {
         shuffle(lottoNums);
 
         return lottoNums

@@ -16,10 +16,6 @@ public class LottoResult {
     private final LottoNumbers lottoNumbers;
     private final Ranking ranking;
 
-//    private LottoResult(LottoNumbers lottoNumbers) {
-//        this.lottoNumbers = lottoNumbers;
-//    }
-
     private LottoResult(LottoNumbers lottoNumbers, Ranking ranking) {
         this.lottoNumbers = lottoNumbers;
         this.ranking = ranking;
@@ -29,10 +25,6 @@ public class LottoResult {
         Ranking rank = lottery.rank(lottoNumbers);
         return new LottoResult(lottoNumbers, rank);
     }
-
-//    public void saveRanking(Lottery lottery) {
-//        this.ranking = lottery.rank(lottoNumbers);
-//    }
 
     public LottoNumbers getLottoNumbers() {
         return lottoNumbers;

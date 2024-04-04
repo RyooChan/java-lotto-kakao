@@ -11,8 +11,8 @@ public class LottoNumbers {
         LottoNumbers = lottoNumbers;
     }
 
-    public static Set<Ball> generateRandNums(RandomNumberGenerator randomNumberGenerator) {
-        return randomNumberGenerator.generateRandNums();
+    public static Set<Ball> generateRandomNumbers(RandomNumberGenerator randomNumberGenerator) {
+        return randomNumberGenerator.generateRandomNumbers();
     }
 
     public Set<Ball> getLottoNumbers() {
