@@ -35,7 +35,7 @@ public class WinningNumbers {
 
         Set<Ball> winningNumberSet = Arrays.stream(winningNumberStr.split(","))
             .map(Integer::parseInt)
-            .map(Ball::createBallOrThrowException)
+            .map(Ball::createBall)
             .collect(Collectors.toSet());
 
         return new WinningNumbers(winningNumberSet);

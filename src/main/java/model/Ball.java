@@ -2,11 +2,9 @@ package model;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.IntStream;
 
-import static java.util.Optional.*;
 import static java.util.stream.Collectors.*;
 
 public class Ball {
@@ -20,7 +18,7 @@ public class Ball {
         this.ball = ballNumber;
     }
 
-    public static Ball createBallOrThrowException(int ballNumber) {
+    public static Ball createBall(int ballNumber) {
         if (ballNumber < START_NUMBER || ballNumber > END_NUMBER) {
             throw new IllegalArgumentException(String.format("%d ~ %d 사이 값을 입력하세요",
                 START_NUMBER, END_NUMBER));
@@ -31,7 +29,7 @@ public class Ball {
 
     public static Set<Ball> createBallSet(Set<Integer> balls) {
         return balls.stream()
-            .map(Ball::createBallOrThrowException)
+            .map(Ball::createBall)
             .collect(toSet());
     }
 

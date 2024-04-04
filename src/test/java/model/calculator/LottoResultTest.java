@@ -21,7 +21,7 @@ class LottoResultTest {
         LottoNumbers lottoNumbers = new LottoNumbers(Ball.createBallSet(Set.of(1,2,3,4,5,6)));
 
         WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers("1,2,3,4,5,6");
-        WinningBonusNumber bonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(7));
+        WinningBonusNumber bonusNumber = new WinningBonusNumber(Ball.createBall(7));
         WinMatch winMatch = new WinMatch(winningNumbers, bonusNumber);
 
         LottoResult lottoResult = LottoResult.createLottoResult(lottoNumbers, winMatch);

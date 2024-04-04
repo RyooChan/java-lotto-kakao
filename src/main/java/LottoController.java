@@ -51,7 +51,7 @@ public class LottoController {
     }
 
     private static WinningBonusNumber inputBonusNumber() {
-        WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(InputView.winningBonusNumberInput()));
+        WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBall(InputView.winningBonusNumberInput()));
         return winningBonusNumber;
     }
 

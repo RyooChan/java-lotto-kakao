@@ -21,7 +21,7 @@ class WinMatchTest {
     @Test
     void 당첨번호와_보너스숫자를_입력받아_몇등인지_구한다_1등() {
         WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers("1,2,3,4,5,6");
-        WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(7));
+        WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBall(7));
 
         WinMatch winMatch = new WinMatch(winningNumbers, winningBonusNumber);
         Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBallSet(Set.of(1, 2, 3, 4, 5, 6))));
@@ -32,7 +32,7 @@ class WinMatchTest {
     @Test
     void 당첨번호와_보너스숫자를_입력받아_몇등인지_구한다_2등() {
         WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers("1,2,3,4,5,6");
-        WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(7));
+        WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBall(7));
 
         WinMatch winMatch = new WinMatch(winningNumbers, winningBonusNumber);
         Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBallSet(Set.of(1, 2, 7, 4, 5, 6))));
@@ -43,7 +43,7 @@ class WinMatchTest {
     @Test
     void 당첨번호와_보너스숫자를_입력받아_몇등인지_구한다_3등() {
         WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers("1,2,3,4,5,6");
-        WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(7));
+        WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBall(7));
 
         WinMatch winMatch = new WinMatch(winningNumbers, winningBonusNumber);
         Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBallSet(Set.of(1, 2, 3, 4, 5, 8))));
@@ -54,7 +54,7 @@ class WinMatchTest {
     @Test
     void 당첨번호와_보너스숫자를_입력받아_몇등인지_구한다_4등() {
         WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers("1,2,3,4,5,6");
-        WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(7));
+        WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBall(7));
 
         WinMatch winMatch = new WinMatch(winningNumbers, winningBonusNumber);
         Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBallSet(Set.of(1, 2, 3, 9, 5, 8))));
@@ -65,7 +65,7 @@ class WinMatchTest {
     @Test
     void 당첨번호와_보너스숫자를_입력받아_몇등인지_구한다_5등() {
         WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers("1,2,3,4,5,6");
-        WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(7));
+        WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBall(7));
 
         WinMatch winMatch = new WinMatch(winningNumbers, winningBonusNumber);
         Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBallSet(Set.of(1, 2, 3, 9, 10, 8))));
@@ -76,7 +76,7 @@ class WinMatchTest {
     @Test
     void 당첨번호와_보너스숫자를_입력받아_몇등인지_구한다_그외1() {
         WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers("1,2,3,4,5,6");
-        WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(7));
+        WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBall(7));
 
         WinMatch winMatch = new WinMatch(winningNumbers, winningBonusNumber);
         Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBallSet(Set.of(1, 2, 11, 9, 10, 8))));
@@ -87,7 +87,7 @@ class WinMatchTest {
     @Test
     void 당첨번호와_보너스숫자를_입력받아_몇등인지_구한다_그외2() {
         WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers("1,2,3,4,5,6");
-        WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(7));
+        WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBall(7));
 
         WinMatch winMatch = new WinMatch(winningNumbers, winningBonusNumber);
         Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBallSet(Set.of(1, 12, 11, 9, 10, 8))));
@@ -98,7 +98,7 @@ class WinMatchTest {
     @Test
     void 당첨번호와_보너스숫자를_입력받아_몇등인지_구한다_그외3() {
         WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers("1,2,3,4,5,6");
-        WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(7));
+        WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBall(7));
 
         WinMatch winMatch = new WinMatch(winningNumbers, winningBonusNumber);
         Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBallSet(Set.of(13, 2, 11, 9, 10, 8))));
@@ -113,7 +113,7 @@ class WinMatchTest {
         assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> {
                 WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers("1,2,3,4,5,6");
-                WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(6));
+                WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBall(6));
                 new WinMatch(winningNumbers, winningBonusNumber);
             }).withMessage("지난주 당첨 번호와 보너스 번호는 달라야 합니다.");
     }
@@ -124,7 +124,7 @@ class WinMatchTest {
         assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> {
                 WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers("1,2,3,4,5,6");
-                WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(46));
+                WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBall(46));
                 new WinMatch(winningNumbers, winningBonusNumber);
             }).withMessage("1 ~ 45 사이 값을 입력하세요");
     }
@@ -135,7 +135,7 @@ class WinMatchTest {
         assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> {
                 WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers("1,1,2,3,4,5");
-                WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(45));
+                WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBall(45));
                 new WinMatch(winningNumbers, winningBonusNumber);
             }).withMessage("서로 다른 6개 숫자를 입력해주세요");
     }
@@ -145,7 +145,7 @@ class WinMatchTest {
         assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> {
                 WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers("1,2,3,4,5,6,7");
-                WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(45));
+                WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBall(45));
                 new WinMatch(winningNumbers, winningBonusNumber);
             }).withMessage("서로 다른 6개 숫자를 입력해주세요");
     }
@@ -155,7 +155,7 @@ class WinMatchTest {
         assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> {
                 WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers("1,2,3,4,5,46");
-                WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(45));
+                WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBall(45));
                 new WinMatch(winningNumbers, winningBonusNumber);
             }).withMessage("1 ~ 45 사이 값을 입력하세요");
     }
