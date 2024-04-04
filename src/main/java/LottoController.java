@@ -59,12 +59,10 @@ public class LottoController {
     private static Calculator calculateLottery(Lottery lottery, LottoGenerator lottoGenerator) {
         List<LottoResult> lottoResultList = lottoGenerator.getLottoNumberList().stream()
             .map(
-                LottoResult::new
+                lottoNumbers -> LottoResult.createLottoResult(lottoNumbers, lottery)
             )
             .collect(toList());
-        Calculator calculator = new Calculator(lottoResultList);
-        calculator.saveRanking(lottery);
-        return calculator;
+        return Calculator.createCalculator(lottoResultList, lottery);
     }
 
     private static void printRankingProfit(Calculator calculator) {

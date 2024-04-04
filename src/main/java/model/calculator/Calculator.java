@@ -1,6 +1,5 @@
 package model.calculator;
 
-import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -16,24 +15,23 @@ import static model.Amount.LOTTO_UNIT_PRICE;
 public class Calculator {
     private final Map<Ranking, Integer> rankingCountMap = initMap();
 
-    private List<LottoResult> lottoResultList;
+    private final List<LottoResult> lottoResultList;
 
-    public Calculator(List<LottoResult> lottoResultList) {
+    private Calculator(List<LottoResult> lottoResultList) {
         this.lottoResultList = lottoResultList;
-    }
-
-    public void saveRanking(Lottery lottery) {
-        lottoResultList = lottoResultList
-            .stream().map(
-                lottoResult -> {
-                    lottoResult.saveRanking(lottery);
-                    return lottoResult;
-                }).collect(toList());
-
         calculateRankingCount();
     }
 
-    public void calculateRankingCount() {
+    public static Calculator createCalculator(List<LottoResult> lottoResultList, Lottery lottery) {
+        lottoResultList = lottoResultList
+            .stream().map(
+                lottoResult -> LottoResult.createLottoResult(lottoResult.getLottoNumbers(), lottery)
+            ).collect(toList());
+
+        return new Calculator(lottoResultList);
+    }
+
+    private void calculateRankingCount() {
         lottoResultList.forEach(
             lottoResult -> {
                 Ranking ranking = lottoResult.getRanking();

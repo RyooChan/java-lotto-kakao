@@ -14,19 +14,28 @@ import model.winningLottery.WinningNumbers;
 
 public class LottoResult {
     private final LottoNumbers lottoNumbers;
-    private Ranking ranking = Ranking.NONE;
+    private final Ranking ranking;
 
-    public LottoResult(LottoNumbers lottoNumbers) {
-        this.lottoNumbers = lottoNumbers;
-    }
+//    private LottoResult(LottoNumbers lottoNumbers) {
+//        this.lottoNumbers = lottoNumbers;
+//    }
 
-    public LottoResult(LottoNumbers lottoNumbers, Ranking ranking) {
+    private LottoResult(LottoNumbers lottoNumbers, Ranking ranking) {
         this.lottoNumbers = lottoNumbers;
         this.ranking = ranking;
     }
 
-    public void saveRanking(Lottery lottery) {
-        this.ranking = lottery.rank(lottoNumbers);
+    public static LottoResult createLottoResult(LottoNumbers lottoNumbers, Lottery lottery) {
+        Ranking rank = lottery.rank(lottoNumbers);
+        return new LottoResult(lottoNumbers, rank);
+    }
+
+//    public void saveRanking(Lottery lottery) {
+//        this.ranking = lottery.rank(lottoNumbers);
+//    }
+
+    public LottoNumbers getLottoNumbers() {
+        return lottoNumbers;
     }
 
     public Ranking getRanking() {

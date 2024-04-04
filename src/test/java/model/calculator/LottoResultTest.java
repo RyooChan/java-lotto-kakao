@@ -13,21 +13,19 @@ import model.winningLottery.WinningNumbers;
 import static model.winningLottery.Ranking.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
+
 class LottoResultTest {
 
     @Test
     void 로또_결과_랭킹이_저장된다() {
         LottoNumbers lottoNumbers = new LottoNumbers(Ball.createBallSet(Set.of(1,2,3,4,5,6)));
-        LottoResult lottoResult = new LottoResult(lottoNumbers);
 
         WinningNumbers winningNumbers = new WinningNumbers(Ball.createBallSet(Set.of(1,2,3,4,5,6)));
         WinningBonusNumber bonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(7));
         Lottery lottery = new Lottery(winningNumbers, bonusNumber);
 
-        LottoResult expectedResult = new LottoResult(lottoNumbers, FIRST);
+        LottoResult lottoResult = LottoResult.createLottoResult(lottoNumbers, lottery);
 
-        lottoResult.saveRanking(lottery);
-
-        assertThat(lottoResult).isEqualTo(expectedResult);
+        assertThat(lottoResult.getRanking()).isEqualTo(FIRST);
     }
 }
