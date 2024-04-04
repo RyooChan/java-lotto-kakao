@@ -9,10 +9,9 @@ import model.Ball;
 import model.random.LottoNumbers;
 
 public class WinningNumbers {
-    private static final int NUMBER_COUNT = 6;
     private final Set<Ball> winningNumbers;
 
-    public WinningNumbers(Set<Ball> winningNumbers) {
+    private WinningNumbers(Set<Ball> winningNumbers) {
         this.winningNumbers = winningNumbers;
     }
 
@@ -39,19 +38,7 @@ public class WinningNumbers {
             .map(Ball::createBallOrThrowException)
             .collect(Collectors.toSet());
 
-        validate(winningNumberSet);
-
         return new WinningNumbers(winningNumberSet);
-    }
-
-    private static void validate(Set<Ball> winningNumberSet) {
-        validateUniqueNumberCount(winningNumberSet);
-    }
-
-    private static void validateUniqueNumberCount(Set<Ball> winningNumberSet) {
-        if (winningNumberSet.size() != NUMBER_COUNT) {
-            throw new IllegalArgumentException(String.format("서로 다른 %d개 숫자를 입력해주세요", NUMBER_COUNT));
-        }
     }
     public Set<Ball> getWinningNumbers() {
         return winningNumbers;

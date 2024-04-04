@@ -28,7 +28,7 @@ class CalculatorTest {
 
     @Test
     void 로또번호들을_저장한다() {
-        WinningNumbers winningNumbers = new WinningNumbers(createBallSet(Set.of(1,2,3,4,5,6)));
+        WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers("1,2,3,4,5,6");
         WinningBonusNumber bonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(7));
         WinMatch winMatch = new WinMatch(winningNumbers, bonusNumber);
 
@@ -43,7 +43,7 @@ class CalculatorTest {
 
     @Test()
     void 각_등수를_가진_로또번호들의_갯수를구한다() {
-        WinningNumbers winningNumbers = new WinningNumbers(createBallSet(Set.of(1,2,3,4,5,6)));
+        WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers("1,2,3,4,5,6");
         WinningBonusNumber bonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(7));
         WinMatch winMatch = new WinMatch(winningNumbers, bonusNumber);
 
@@ -68,7 +68,7 @@ class CalculatorTest {
 
     @Test()
     void 각_등수를_통해_전체_수익률을_구한다() {
-        WinningNumbers winningNumbers = new WinningNumbers(createBallSet(Set.of(1,2,3,4,5,6)));
+        WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers("1,2,3,4,5,6");
         WinningBonusNumber bonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(7));
         WinMatch winMatch = new WinMatch(winningNumbers, bonusNumber);
 

@@ -24,24 +24,8 @@ public class WinningBonusNumber {
         return THIRD;
     }
 
-    public static WinningBonusNumber createWinningBonusNumber(WinningNumbers winningNumbers,
-                                                              Ball winningBonusNumber) {
-        validateWinningNumbers(winningNumbers, winningBonusNumber);
-        return new WinningBonusNumber(winningBonusNumber);
-    }
-
-    private static void validateWinningNumbers(WinningNumbers winningNumbers,
-                                               Ball winningBonusNumber) {
-        validateIsNotWinningNumber(winningNumbers, winningBonusNumber);
-    }
-
-    private static void validateIsNotWinningNumber(WinningNumbers winningNumbers,
-                                                   Ball winningBonusNumber) {
-        Set<Ball> winningNumberSet = winningNumbers.getWinningNumbers();
-
-        if (winningNumberSet.contains(winningBonusNumber)) {
-            throw new IllegalArgumentException("지난주 당첨 번호와 보너스 번호는 달라야 합니다.");
-        }
+    public Ball getBonusNumber() {
+        return bonusNumber;
     }
 
     @Override

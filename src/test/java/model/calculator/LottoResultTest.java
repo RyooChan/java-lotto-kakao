@@ -20,7 +20,7 @@ class LottoResultTest {
     void 로또_결과_랭킹이_저장된다() {
         LottoNumbers lottoNumbers = new LottoNumbers(Ball.createBallSet(Set.of(1,2,3,4,5,6)));
 
-        WinningNumbers winningNumbers = new WinningNumbers(Ball.createBallSet(Set.of(1,2,3,4,5,6)));
+        WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers("1,2,3,4,5,6");
         WinningBonusNumber bonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(7));
         WinMatch winMatch = new WinMatch(winningNumbers, bonusNumber);
 

@@ -23,7 +23,7 @@ public class LottoController {
 
         WinningNumbers winningNumbers = inputWinningNumbers();
 
-        WinningBonusNumber winningBonusNumber = inputBonusNumber(winningNumbers);
+        WinningBonusNumber winningBonusNumber = inputBonusNumber();
 
         WinMatch winMatch = new WinMatch(winningNumbers, winningBonusNumber);
         Calculator calculator = calculateLottery(winMatch, lottoGenerator);
@@ -50,9 +50,8 @@ public class LottoController {
         return winningNumbers;
     }
 
-    private static WinningBonusNumber inputBonusNumber(WinningNumbers winningNumbers) {
-        WinningBonusNumber winningBonusNumber = WinningBonusNumber
-            .createWinningBonusNumber(winningNumbers, Ball.createBallOrThrowException(InputView.winningBonusNumberInput()));
+    private static WinningBonusNumber inputBonusNumber() {
+        WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBallOrThrowException(InputView.winningBonusNumberInput()));
         return winningBonusNumber;
     }
 
