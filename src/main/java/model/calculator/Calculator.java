@@ -13,12 +13,12 @@ import static java.util.stream.Collectors.*;
 import static model.Amount.LOTTO_UNIT_PRICE;
 
 public class Calculator {
-    private final Map<Ranking, Integer> rankingCountMap = initMap();
+    private final Map<Ranking, Integer> rankingCounts = initMap();
 
-    private final List<LottoResult> lottoResultList;
+    private final List<LottoResult> lottoResults;
 
-    private Calculator(List<LottoResult> lottoResultList) {
-        this.lottoResultList = lottoResultList;
+    private Calculator(List<LottoResult> lottoResults) {
+        this.lottoResults = lottoResults;
         calculateRankingCount();
     }
 
@@ -32,20 +32,20 @@ public class Calculator {
     }
 
     private void calculateRankingCount() {
-        lottoResultList.forEach(
+        lottoResults.forEach(
             lottoResult -> {
                 Ranking ranking = lottoResult.getRanking();
-                rankingCountMap.put(ranking, rankingCountMap.get(ranking) + 1);
+                rankingCounts.put(ranking, rankingCounts.get(ranking) + 1);
             }
         );
     }
 
     private Map<Ranking, Integer> initMap() {
-        Map<Ranking, Integer> rankingCountMap = new EnumMap<>(Ranking.class);
+        Map<Ranking, Integer> rankingCounts = new EnumMap<>(Ranking.class);
         asList(Ranking.values()).forEach(
-            ranking -> rankingCountMap.put(ranking, 0)
+            ranking -> rankingCounts.put(ranking, 0)
         );
-        return rankingCountMap;
+        return rankingCounts;
     }
 
     public double calculateProfitRate() {
@@ -53,14 +53,14 @@ public class Calculator {
     }
 
     private long totalSum() {
-        return rankingCountMap.entrySet()
+        return rankingCounts.entrySet()
             .stream()
             .mapToLong(entry -> (long) entry.getKey().getReward() * entry.getValue())
             .sum();
     }
 
     private long purchaseAmount() {
-        return rankingCountMap.values()
+        return rankingCounts.values()
             .stream()
             .mapToInt(count -> LOTTO_UNIT_PRICE * count)
             .sum();
@@ -70,8 +70,8 @@ public class Calculator {
         return Math.floor(num * 100) / 100;
     }
 
-    public Map<Ranking, Integer> getRankingCountMap() {
-        return rankingCountMap;
+    public Map<Ranking, Integer> getRankingCounts() {
+        return rankingCounts;
     }
 
     @Override
@@ -79,11 +79,11 @@ public class Calculator {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Calculator that = (Calculator) o;
-        return Objects.equals(lottoResultList, that.lottoResultList);
+        return Objects.equals(lottoResults, that.lottoResults);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(lottoResultList);
+        return Objects.hash(lottoResults);
     }
 }

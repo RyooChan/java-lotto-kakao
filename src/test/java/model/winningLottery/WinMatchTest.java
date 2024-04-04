@@ -24,7 +24,7 @@ class WinMatchTest {
         WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBall(7));
 
         WinMatch winMatch = new WinMatch(winningNumbers, winningBonusNumber);
-        Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBallSet(Set.of(1, 2, 3, 4, 5, 6))));
+        Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBalls(Set.of(1, 2, 3, 4, 5, 6))));
 
         assertThat(rank).isEqualTo(FIRST);
     }
@@ -35,7 +35,7 @@ class WinMatchTest {
         WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBall(7));
 
         WinMatch winMatch = new WinMatch(winningNumbers, winningBonusNumber);
-        Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBallSet(Set.of(1, 2, 7, 4, 5, 6))));
+        Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBalls(Set.of(1, 2, 7, 4, 5, 6))));
 
         assertThat(rank).isEqualTo(SECOND);
     }
@@ -46,7 +46,7 @@ class WinMatchTest {
         WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBall(7));
 
         WinMatch winMatch = new WinMatch(winningNumbers, winningBonusNumber);
-        Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBallSet(Set.of(1, 2, 3, 4, 5, 8))));
+        Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBalls(Set.of(1, 2, 3, 4, 5, 8))));
 
         assertThat(rank).isEqualTo(THIRD);
     }
@@ -57,7 +57,7 @@ class WinMatchTest {
         WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBall(7));
 
         WinMatch winMatch = new WinMatch(winningNumbers, winningBonusNumber);
-        Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBallSet(Set.of(1, 2, 3, 9, 5, 8))));
+        Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBalls(Set.of(1, 2, 3, 9, 5, 8))));
 
         assertThat(rank).isEqualTo(FOURTH);
     }
@@ -68,7 +68,7 @@ class WinMatchTest {
         WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBall(7));
 
         WinMatch winMatch = new WinMatch(winningNumbers, winningBonusNumber);
-        Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBallSet(Set.of(1, 2, 3, 9, 10, 8))));
+        Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBalls(Set.of(1, 2, 3, 9, 10, 8))));
 
         assertThat(rank).isEqualTo(FIFTH);
     }
@@ -79,7 +79,7 @@ class WinMatchTest {
         WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBall(7));
 
         WinMatch winMatch = new WinMatch(winningNumbers, winningBonusNumber);
-        Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBallSet(Set.of(1, 2, 11, 9, 10, 8))));
+        Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBalls(Set.of(1, 2, 11, 9, 10, 8))));
 
         assertThat(rank).isEqualTo(NONE);
     }
@@ -90,7 +90,7 @@ class WinMatchTest {
         WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBall(7));
 
         WinMatch winMatch = new WinMatch(winningNumbers, winningBonusNumber);
-        Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBallSet(Set.of(1, 12, 11, 9, 10, 8))));
+        Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBalls(Set.of(1, 12, 11, 9, 10, 8))));
 
         assertThat(rank).isEqualTo(NONE);
     }
@@ -101,7 +101,7 @@ class WinMatchTest {
         WinningBonusNumber winningBonusNumber = new WinningBonusNumber(Ball.createBall(7));
 
         WinMatch winMatch = new WinMatch(winningNumbers, winningBonusNumber);
-        Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBallSet(Set.of(13, 2, 11, 9, 10, 8))));
+        Ranking rank = winMatch.rank(new LottoNumbers(Ball.createBalls(Set.of(13, 2, 11, 9, 10, 8))));
 
         assertThat(rank).isEqualTo(NONE);
     }

@@ -8,10 +8,10 @@ import model.Amount;
 import static model.Amount.LOTTO_UNIT_PRICE;
 
 public class LottoGenerator {
-    private final List<LottoNumbers> lottoNumberList;
+    private final List<LottoNumbers> lottoNumbers;
 
-    private LottoGenerator(List<LottoNumbers> lottoNumberList) {
-        this.lottoNumberList = new ArrayList<>(lottoNumberList);
+    private LottoGenerator(List<LottoNumbers> lottoNumbers) {
+        this.lottoNumbers = new ArrayList<>(lottoNumbers);
     }
 
     public static LottoGenerator generate(Amount amount) {
@@ -29,14 +29,14 @@ public class LottoGenerator {
     }
 
     public int calculateCount() {
-        return lottoNumberList.size();
+        return lottoNumbers.size();
     }
 
-    public List<LottoNumbers> getLottoNumberList() {
-        return lottoNumberList;
+    public List<LottoNumbers> getLottoNumbers() {
+        return lottoNumbers;
     }
 
     public int getWholeLottoSize() {
-        return lottoNumberList.size();
+        return lottoNumbers.size();
     }
 }

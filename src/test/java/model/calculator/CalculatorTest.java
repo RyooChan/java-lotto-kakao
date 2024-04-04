@@ -32,13 +32,13 @@ class CalculatorTest {
         WinningBonusNumber bonusNumber = new WinningBonusNumber(Ball.createBall(7));
         WinMatch winMatch = new WinMatch(winningNumbers, bonusNumber);
 
-        LottoNumbers lottoNumbers = new LottoNumbers(createBallSet(Set.of(1,2,3,4,5,6)));
+        LottoNumbers lottoNumbers = new LottoNumbers(createBalls(Set.of(1,2,3,4,5,6)));
         LottoResult lottoResult = LottoResult.createLottoResult(lottoNumbers, winMatch);
 
         int expectedFirstCount = 1;
         Calculator calculator = Calculator.createCalculator(List.of(lottoResult), winMatch);
 
-        assertThat(calculator.getRankingCountMap().get(FIRST)).isEqualTo(expectedFirstCount);
+        assertThat(calculator.getRankingCounts().get(FIRST)).isEqualTo(expectedFirstCount);
     }
 
     @Test()
@@ -47,9 +47,9 @@ class CalculatorTest {
         WinningBonusNumber bonusNumber = new WinningBonusNumber(Ball.createBall(7));
         WinMatch winMatch = new WinMatch(winningNumbers, bonusNumber);
 
-        LottoResult firstOne = LottoResult.createLottoResult(new LottoNumbers(createBallSet(Set.of(1, 2, 3, 4, 5, 6))), winMatch);
-        LottoResult firstTwo = LottoResult.createLottoResult(new LottoNumbers(createBallSet(Set.of(1, 2, 3, 4, 5, 6))), winMatch);
-        LottoResult secondOne = LottoResult.createLottoResult(new LottoNumbers(createBallSet(Set.of(1, 2, 3, 4, 5, 7))), winMatch);
+        LottoResult firstOne = LottoResult.createLottoResult(new LottoNumbers(createBalls(Set.of(1, 2, 3, 4, 5, 6))), winMatch);
+        LottoResult firstTwo = LottoResult.createLottoResult(new LottoNumbers(createBalls(Set.of(1, 2, 3, 4, 5, 6))), winMatch);
+        LottoResult secondOne = LottoResult.createLottoResult(new LottoNumbers(createBalls(Set.of(1, 2, 3, 4, 5, 7))), winMatch);
 
         Calculator calculator = Calculator.createCalculator(asList(firstOne, firstTwo, secondOne), winMatch);
 
@@ -61,7 +61,7 @@ class CalculatorTest {
         expectedEnumMap.put(FIFTH, 0);
         expectedEnumMap.put(NONE, 0);
 
-        Map<Ranking, Integer> rankingCountMap = calculator.getRankingCountMap();
+        Map<Ranking, Integer> rankingCountMap = calculator.getRankingCounts();
 
         assertThat(rankingCountMap).isEqualTo(expectedEnumMap);
     }
@@ -72,9 +72,9 @@ class CalculatorTest {
         WinningBonusNumber bonusNumber = new WinningBonusNumber(Ball.createBall(7));
         WinMatch winMatch = new WinMatch(winningNumbers, bonusNumber);
 
-        LottoResult firstOne = LottoResult.createLottoResult(new LottoNumbers(createBallSet(Set.of(1, 2, 3, 4, 5, 6))), winMatch);
-        LottoResult firstTwo = LottoResult.createLottoResult(new LottoNumbers(createBallSet(Set.of(1, 2, 3, 4, 5, 6))), winMatch);
-        LottoResult secondOne = LottoResult.createLottoResult(new LottoNumbers(createBallSet(Set.of(1, 2, 3, 4, 5, 7))), winMatch);
+        LottoResult firstOne = LottoResult.createLottoResult(new LottoNumbers(createBalls(Set.of(1, 2, 3, 4, 5, 6))), winMatch);
+        LottoResult firstTwo = LottoResult.createLottoResult(new LottoNumbers(createBalls(Set.of(1, 2, 3, 4, 5, 6))), winMatch);
+        LottoResult secondOne = LottoResult.createLottoResult(new LottoNumbers(createBalls(Set.of(1, 2, 3, 4, 5, 7))), winMatch);
         Calculator calculator = Calculator.createCalculator(asList(firstOne, firstTwo, secondOne), winMatch);
 
         double profitRate = calculator.calculateProfitRate();

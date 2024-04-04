@@ -40,7 +40,7 @@ public class LottoController {
     private static LottoGenerator generateLottoNumbers(Amount amount) {
         LottoGenerator lottoGenerator = LottoGenerator.generate(amount);
         OutputView.printPurchaseCount(lottoGenerator.calculateCount());
-        OutputView.printLottoNumberList(lottoGenerator.getLottoNumberList());
+        OutputView.printLottoNumberList(lottoGenerator.getLottoNumbers());
         return lottoGenerator;
     }
 
@@ -56,7 +56,7 @@ public class LottoController {
     }
 
     private static Calculator calculateLottery(WinMatch winMatch, LottoGenerator lottoGenerator) {
-        List<LottoResult> lottoResultList = lottoGenerator.getLottoNumberList().stream()
+        List<LottoResult> lottoResultList = lottoGenerator.getLottoNumbers().stream()
             .map(
                 lottoNumbers -> LottoResult.createLottoResult(lottoNumbers, winMatch)
             )
@@ -65,7 +65,7 @@ public class LottoController {
     }
 
     private static void printRankingProfit(Calculator calculator) {
-        Map<Ranking, Integer> rankingCountMap = calculator.getRankingCountMap();
+        Map<Ranking, Integer> rankingCountMap = calculator.getRankingCounts();
         OutputView.printRankingResult(rankingCountMap);
 
         double profitRate = calculator.calculateProfitRate();

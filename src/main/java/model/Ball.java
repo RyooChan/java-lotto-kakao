@@ -27,7 +27,7 @@ public class Ball {
         return lottoNums.get(ballNumber - 1);
     }
 
-    public static Set<Ball> createBallSet(Set<Integer> balls) {
+    public static Set<Ball> createBalls(Set<Integer> balls) {
         return balls.stream()
             .map(Ball::createBall)
             .collect(toSet());
