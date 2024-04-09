@@ -1,5 +1,6 @@
 package model.random;
 
+import java.util.List;
 import java.util.Set;
 
 import model.Ball;
@@ -11,9 +12,10 @@ import static model.Ball.*;
 public interface RandomNumberGenerator {
 
     default Set<Ball> generateRandomNumbers() {
-        shuffle(lottoNums);
+        List<Ball> balls = getBalls();
+        shuffle(balls);
 
-        return lottoNums
+        return balls
             .stream()
             .limit(6)
             .collect(toSet());
