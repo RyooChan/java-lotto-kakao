@@ -38,7 +38,7 @@ public class LottoController {
     }
 
     private static LottoGenerator generateLottoNumbers(Amount amount) {
-        LottoGenerator lottoGenerator = LottoGenerator.generate(amount);
+        LottoGenerator lottoGenerator = LottoGenerator.generate(amount.getLottoCount());
         OutputView.printPurchaseCount(lottoGenerator.calculateCount());
         OutputView.printLottoNumberList(lottoGenerator.getLottoNumbers());
         return lottoGenerator;

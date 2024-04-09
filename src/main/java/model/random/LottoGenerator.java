@@ -3,10 +3,6 @@ package model.random;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Amount;
-
-import static model.Amount.LOTTO_UNIT_PRICE;
-
 public class LottoGenerator {
     private final List<LottoNumbers> lottoNumbers;
 
@@ -14,9 +10,7 @@ public class LottoGenerator {
         this.lottoNumbers = new ArrayList<>(lottoNumbers);
     }
 
-    public static LottoGenerator generate(Amount amount) {
-        int count = amount.getCost() / LOTTO_UNIT_PRICE;
-
+    public static LottoGenerator generate(int count) {
         List<LottoNumbers> lottoNumberList = new ArrayList<>();
 
         for (int i=0; i<count; i++) {
