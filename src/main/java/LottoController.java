@@ -1,11 +1,13 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import model.Amount;
 import model.Ball;
+import model.LottoNumbers;
 import model.calculator.Calculator;
 import model.calculator.LottoResult;
-import model.random.LottoGenerator;
+import model.LottoGenerator;
 import model.winningLottery.WinMatch;
 import model.winningLottery.Ranking;
 import model.winningLottery.WinningBonusNumber;
@@ -16,6 +18,7 @@ import view.OutputView;
 import static java.util.stream.Collectors.toList;
 
 public class LottoController {
+
     public static void run() {
         Amount amount = getAmount();
 
@@ -38,7 +41,15 @@ public class LottoController {
     }
 
     private static LottoGenerator generateLottoNumbers(Amount amount) {
-        LottoGenerator lottoGenerator = LottoGenerator.generate(amount.getLottoCount());
+        int manualCount = InputView.manualCountInput();
+        InputView.manualLottoIn();
+
+        List<LottoNumbers> manualLottos = new ArrayList<>();
+        for (int i=0; i<manualCount; i++) {
+            manualLottos.add(LottoNumbers.createLottoNumbers(InputView.manualLottoInput()));
+        }
+
+        LottoGenerator lottoGenerator = LottoGenerator.generateAll(amount.getLottoCount(), manualLottos);
         OutputView.printPurchaseCount(lottoGenerator.calculateCount());
         OutputView.printLottoNumberList(lottoGenerator.getLottoNumbers());
         return lottoGenerator;

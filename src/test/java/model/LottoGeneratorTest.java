@@ -1,9 +1,7 @@
-package model.random;
+package model;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import model.Amount;
 
 public class LottoGeneratorTest {
     @Test
@@ -11,7 +9,7 @@ public class LottoGeneratorTest {
         int cost = 6000;
         Amount amount = new Amount(cost);
 
-        LottoGenerator lottoGenerator = LottoGenerator.generate(amount.getLottoCount());
+        LottoGenerator lottoGenerator = LottoGenerator.generateRandom(amount.getLottoCount());
         Assertions.assertThat(lottoGenerator.getWholeLottoSize()).isEqualTo(6);
     }
 }
