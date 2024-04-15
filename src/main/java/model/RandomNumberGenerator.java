@@ -9,9 +9,9 @@ import static java.util.Collections.*;
 import static java.util.stream.Collectors.*;
 import static model.Ball.*;
 
-public interface RandomNumberGenerator {
+public class RandomNumberGenerator {
 
-    default Set<Ball> generateRandomNumbers() {
+    public static Set<Ball> generateRandomNumbers() {
         List<Ball> balls = getBalls();
         shuffle(balls);
 

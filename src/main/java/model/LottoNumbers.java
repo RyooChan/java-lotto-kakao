@@ -32,10 +32,6 @@ public class LottoNumbers {
         return new LottoNumbers(lottoNumbers);
     }
 
-    public static Set<Ball> generateRandomNumbers(RandomNumberGenerator randomNumberGenerator) {
-        return randomNumberGenerator.generateRandomNumbers();
-    }
-
     public Set<Ball> getLottoNumbers() {
         return LottoNumbers;
     }

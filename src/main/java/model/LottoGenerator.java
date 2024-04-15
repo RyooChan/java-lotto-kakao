@@ -11,7 +11,6 @@ public class LottoGenerator {
     }
 
     public static LottoGenerator generateAll(int wholeCount, List<LottoNumbers> manualLottos) {
-        validateStock(wholeCount, manualLottos.size());
         List<LottoNumbers> allLottos = new ArrayList<>();
         LottoGenerator lottoGenerator = generateRandom(wholeCount - manualLottos.size());
         allLottos.addAll(manualLottos);
@@ -24,17 +23,11 @@ public class LottoGenerator {
 
         for (int i=0; i<count; i++) {
             LottoNumbers lottoNumbers =
-                new LottoNumbers(LottoNumbers.generateRandomNumbers(new RandomNumberGenerator() {}));
+                new LottoNumbers(RandomNumberGenerator.generateRandomNumbers());
             lottoNumberList.add(lottoNumbers);
         }
 
         return new LottoGenerator(lottoNumberList);
-    }
-
-    private static void validateStock(int wholeCount, int manualCount) {
-        if (wholeCount < manualCount){
-            throw new IllegalArgumentException("총 구매 가능 갯수를 초과했습니다.");
-        }
     }
 
     public int calculateCount() {

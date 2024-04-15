@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import model.Amount;
 import model.Ball;
@@ -42,17 +43,20 @@ public class LottoController {
 
     private static LottoGenerator generateLottoNumbers(Amount amount) {
         int manualCount = InputView.manualCountInput();
-        InputView.manualLottoIn();
 
-        List<LottoNumbers> manualLottos = new ArrayList<>();
-        for (int i=0; i<manualCount; i++) {
-            manualLottos.add(LottoNumbers.createLottoNumbers(InputView.manualLottoInput()));
-        }
+        validateStock(amount.getLottoCount(), manualCount);
+        List<LottoNumbers> manualLottos = InputView.manualLottoIn(manualCount);
 
         LottoGenerator lottoGenerator = LottoGenerator.generateAll(amount.getLottoCount(), manualLottos);
         OutputView.printPurchaseCount(lottoGenerator.calculateCount());
         OutputView.printLottoNumberList(lottoGenerator.getLottoNumbers());
         return lottoGenerator;
+    }
+
+    private static void validateStock(int wholeCount, int manualCount) {
+        if (wholeCount < manualCount){
+            throw new IllegalArgumentException("총 구매 가능 갯수를 초과했습니다.");
+        }
     }
 
     private static WinningNumbers inputWinningNumbers() {
